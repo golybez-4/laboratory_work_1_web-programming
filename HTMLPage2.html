@@ -9,23 +9,35 @@
             margin: 0;
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background: #f8f5ec; /* світлий фон */
+            background: #f8f5ec;
+            width: 100%;
+            height: 100%;
         }
 
         /* ===== Сітка сторінки ===== */
         .container {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            grid-template-rows: auto auto auto auto auto;
-            min-height: 100vh;
-            gap: 10px; /* відстань між блоками */
+            grid-template-columns: 1fr 2fr 1fr; /* три колонки */
+            grid-auto-rows: auto; /* рядки ростуть під контент */
+            width: 100%; /* резинова ширина */
+            min-height: 100vh; /* на весь екран */
+            gap: 10px;
             padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* ===== Загальні стилі блоків ===== */
+        .header, .block2, .block3, .block4, .block5, .block6, .footer {
+            width: 100%; /* завжди тягнеться на всю ширину колонки */
+            height: auto; /* висота залежить від контенту */
+            box-sizing: border-box;
+            overflow-wrap: break-word; /* перенос довгих слів */
         }
 
         /* ===== Верхній блок (шапка) ===== */
         .header {
             grid-column: 1 / 4;
-            background: #f0c674; /* золотистий */
+            background: #f0c674;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,59 +50,57 @@
         .block2 {
             grid-column: 1;
             grid-row: 2;
-            background: #f9e4b7; /* світлий беж */
+            background: #f9e4b7;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* ===== Ліва колонка (цікаві факти) ===== */
+        /* ===== Ліва колонка (факти) ===== */
         .block5 {
             grid-column: 1;
             grid-row: 3 / 5;
-            background: #f5d9a8; /* теплий пісочний */
+            background: #f5d9a8;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            overflow-y: auto;
         }
 
         /* ===== Центральний блок ===== */
         .block3 {
             grid-column: 2;
             grid-row: 2 / 4;
-            background: #fffef8; /* майже білий */
+            background: #fffef8;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        /* ===== Центральний нижній блок (посилання) ===== */
+        /* ===== Центральний нижній блок ===== */
         .block6 {
             grid-column: 2;
             grid-row: 4;
-            background: #f3c87a; /* насичений жовтуватий */
+            background: #f3c87a;
             padding: 25px;
             text-align: center;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* ===== Права колонка (новини та доповнення) ===== */
+        /* ===== Права колонка ===== */
         .block4 {
             grid-column: 3;
             grid-row: 2 / 5;
-            background: #f7e1b0; /* бежево-золотистий */
+            background: #f7e1b0;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            overflow-y: auto;
         }
 
-        /* ===== Нижній блок (футер) ===== */
+        /* ===== Футер ===== */
         .footer {
             grid-column: 1 / 4;
-            background: #eac784; /* трохи темніший за шапку */
+            background: #eac784;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -99,36 +109,39 @@
             box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
         }
 
-        /* ===== Стилі списків та посилань ===== */
+        /* ===== Текст і посилання ===== */
         ul, ol {
             padding-left: 20px;
         }
 
             ul li a {
                 text-decoration: none;
-                color: #7a4b1c; /* темно-карамельний */
+                color: #7a4b1c;
                 font-weight: bold;
             }
 
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-
+        /* ===== Заголовки ===== */
         h3 {
-            color: #9c4221; /* теракотовий */
+            color: #9c4221;
         }
 
         h4 {
-            color: #7a5a1a; /* піщано-коричневий */
+            color: #7a5a1a;
             margin-top: 20px;
+        }
+
+        /* ===== Картинки ===== */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 10px 0;
         }
 
         /* ===== Адаптивність ===== */
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* одна колонка */
                 grid-template-rows: auto;
             }
 
@@ -142,33 +155,8 @@
                 grid-row: auto;
                 padding: 10px;
             }
-
-            .block5, .block4 {
-                max-height: none;
-                overflow: visible;
-            }
-
-            body {
-                font-size: 16px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            h3 {
-                font-size: 1.2em;
-            }
-
-            h4 {
-                font-size: 1em;
-            }
         }
 
-        /* Переносити слова у вузьких блоках */
-        p, li {
-            overflow-wrap: break-word;
-        }
 
     </style>
 </head>
